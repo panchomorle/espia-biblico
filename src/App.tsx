@@ -31,7 +31,7 @@ const generateRoles = (players: Player[]): Player[] => {
 
 function App() {
   const [playing, setPlaying] = useState(false);
-  const [categories, setCategories] = useState<Category[]>(
+  const [categories] = useState<Category[]>(
     ['comidas', 'personajes', 'lugares', 'objetos', 'animales']);
   const [currentWord, setCurrentWord] = useState<Word>({word: 'no word', category: 'comidas'});
   const [players, setPlayers] = useState<Player[]>([]);
