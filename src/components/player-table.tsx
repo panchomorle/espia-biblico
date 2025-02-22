@@ -51,36 +51,47 @@ function PlayerTable() {
         setSettings({players: [], category: []});
     }
     
-  return (
-    <div>
-        <h2>Add players</h2>
-        <div>
-            <form onSubmit={handleSubmit}>
-                <input 
-                className='border border-gray-400 p-2'
-                name="playerName" type="text" placeholder='Player name'/>
-                <button className="bg-zinc-900 hover:bg-zinc-800 text-white font-bold py-2 px-4 rounded" type="submit">Add</button>
-            </form>
-            <div>
-                <div>
-                    <div>
-                        <h3>Players</h3>
+    return (
+        <div className='h-full flex flex-col justify-center items-center overflow-hidden'>
+            <h2 className='font-bold p-2'>Añadir jugadores</h2>
+            <div className='flex flex-col w-full max-w-md'>
+                <form className='flex flex-col sm:flex-row gap-2 mb-4' onSubmit={handleSubmit}>
+                    <input 
+                        className='flex-grow border border-gray-400 p-2 rounded'
+                        name="playerName"
+                        type="text"
+                        placeholder='Player name'
+                    />
+                    <button 
+                        className="bg-zinc-900 hover:bg-zinc-800 text-white font-bold py-2 px-4 rounded" 
+                        type="submit"
+                    >
+                        Add
+                    </button>
+                </form>
+                
+                <div className='flex-1 flex flex-col overflow-hidden border border-gray-400 rounded min-h-0'>
+                    <div className='p-2 border-b border-gray-400'>
+                        <h3>Jugadores: {settings.players.length}</h3>
+                    </div>
+                    <div className='flex-1 max-h-64 overflow-y-auto p-2'>
+                        {settings?.players.map((player) => (
+                            <div key={player.id} className="mb-2">
+                                <PlayerCard player={player} onDelete={() => handleDelete(player.id)} />
+                            </div>
+                        ))}
                     </div>
                 </div>
-                <div className=''>
-                    {settings?.players.map((player) => (
-                        <div key={player.id}>
-                            <PlayerCard player={player} onDelete={()=> handleDelete(player.id)} />
-                        </div>
-                    ))}
-                </div>
-            </div>
-            <button className="my-2 bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
-            onClick={handleReset}>Delete All</button>
-        </div>
 
-    </div>
-  )
+                <button 
+                    className="mt-4 bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded w-full"
+                    onClick={handleReset}
+                >
+                    Borrar todo
+                </button>
+            </div>
+        </div>
+    )
 }
 
 export default PlayerTable

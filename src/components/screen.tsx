@@ -1,14 +1,15 @@
 import { useState } from "react";
-import { Role, Word } from "../lib/types";
+import { Category, Role, Word } from "../lib/types";
 
 interface ScreenProps{
     word: Word;
     player: string;
     role: Role;
+    color: Category['enabled_color'];
     onClick: () => void;
 }
 
-function Screen({ word, player, role, onClick}: ScreenProps) {
+function Screen({ word, player, role, color, onClick}: ScreenProps) {
     const [toggled, setToggle] = useState(false);
 
     const handleToggle = () => {
@@ -16,9 +17,9 @@ function Screen({ word, player, role, onClick}: ScreenProps) {
     }
 
   return (
-    <div className="w-screen h-screen flex justify-center items-center text-center">
+    <div className="w-full h-full flex justify-center items-center text-center">
     { toggled ? 
-        <button onClick={onClick} className="w-full h-full bg-fuchsia-900 text-white p-8">
+        <button onClick={onClick} className={`w-full h-full ${color} text-white p-8`}>
         <h2 className="align-text-top">{player}</h2>
         {
             role === 'player' ?
@@ -29,7 +30,7 @@ function Screen({ word, player, role, onClick}: ScreenProps) {
         <h3>Hacé click para pasar a la siguiente persona.</h3>
         </button>
     :
-        <button onClick={handleToggle} className="w-full h-full bg-fuchsia-900 text-white p-8">
+        <button onClick={handleToggle} className={`w-full h-full ${color} text-white p-8`}>
         <h2 className="">{player}</h2>
         <h3>Hacé click para ver qué sos.</h3>
         </button>
