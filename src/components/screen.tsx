@@ -17,7 +17,7 @@ function Screen({ word, player, role, color, onClick}: ScreenProps) {
     }
 
   return (
-    <div className="w-full h-full flex justify-center items-center text-center">
+    <div className="w-full h-screen flex justify-center items-center text-center">
     { toggled ? 
         <button onClick={onClick} className={`w-full h-full ${color} text-white p-8`}>
         <h2 className="align-text-top">{player}</h2>

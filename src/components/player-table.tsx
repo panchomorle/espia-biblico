@@ -52,46 +52,44 @@ function PlayerTable() {
     }
     
     return (
-        <div className='h-full flex flex-col justify-center items-center overflow-hidden'>
-            <h2 className='font-bold p-2'>Añadir jugadores</h2>
-            <div className='flex flex-col w-full max-w-md'>
-                <form className='flex flex-col sm:flex-row gap-2 mb-4' onSubmit={handleSubmit}>
-                    <input 
-                        className='flex-grow border border-gray-400 p-2 rounded'
-                        name="playerName"
-                        type="text"
-                        placeholder='Player name'
-                    />
-                    <button 
-                        className="bg-zinc-900 hover:bg-zinc-800 text-white font-bold py-2 px-4 rounded" 
-                        type="submit"
-                    >
-                        Add
-                    </button>
-                </form>
-                
-                <div className='flex-1 flex flex-col overflow-hidden border border-gray-400 rounded min-h-0'>
-                    <div className='p-2 border-b border-gray-400'>
-                        <h3>Jugadores: {settings.players.length}</h3>
-                    </div>
-                    <div className='flex-1 max-h-64 overflow-y-auto p-2'>
-                        {settings?.players.map((player) => (
-                            <div key={player.id} className="mb-2">
-                                <PlayerCard player={player} onDelete={() => handleDelete(player.id)} />
-                            </div>
-                        ))}
-                    </div>
-                </div>
-
-                <button 
-                    className="mt-4 bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded w-full"
-                    onClick={handleReset}
-                >
-                    Borrar todo
-                </button>
+        <div className="w-full bg-gray-800 p-4 rounded-lg shadow-md">
+          <h2 className="font-bold text-lg mb-4 text-center">Añadir Jugadores</h2>
+          <form className="flex flex-col sm:flex-row gap-2 mb-4" onSubmit={handleSubmit}>
+            <input
+              className="flex-grow border border-gray-300 p-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+              name="playerName"
+              type="text"
+              placeholder="Nombre del jugador"
+            />
+            <button
+              className="bg-blue-700 hover:bg-blue-800 text-white font-semibold py-2 px-4 rounded"
+              type="submit"
+            >
+              Añadir
+            </button>
+          </form>
+    
+          <div className="border border-gray-300 rounded">
+            <div className="p-2 border-b border-gray-300">
+              <h3 className="text-white">Jugadores: {settings.players.length}</h3>
             </div>
+            <div className="p-2 overflow-y-auto">
+              {settings.players.map((player) => (
+                <div key={player.id} className="mb-2">
+                  <PlayerCard player={player} onDelete={() => handleDelete(player.id)} />
+                </div>
+              ))}
+            </div>
+          </div>
+    
+          <button
+            className="mt-4 bg-red-500 hover:bg-red-700 text-white font-semibold py-2 px-4 rounded w-full"
+            onClick={handleReset}
+          >
+            Borrar Todo
+          </button>
         </div>
-    )
-}
-
-export default PlayerTable
+      );
+    }
+    
+    export default PlayerTable;
